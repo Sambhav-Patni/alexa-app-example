@@ -39,7 +39,7 @@ alexaApp.intent("nameIntent", {
     ]
   },
   function(request, response) {
-    response.say("Success!, intent invoked "+request.intent.slots.NAME.value);
+    response.say("Success!, intent invoked "+request.slot("NAME"));
   }
 );
 
