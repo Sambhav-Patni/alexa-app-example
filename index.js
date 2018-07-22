@@ -39,7 +39,7 @@ alexaApp.intent("nameIntent", {
     ]
   },
   function(request, response) {
-    response.say("request.slot("NAME")+" G key jai jai car");
+    response.say(request.slot("NAME")+" G key jai jai car");
   }
 );
 
