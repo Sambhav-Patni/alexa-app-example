@@ -52,6 +52,7 @@ alexaApp.intent("nameIntent", {
         response.say("got title "+title)
       })
     });
+  console.log("title: "+title);
   response.say("got title "+title);
   }
 );
