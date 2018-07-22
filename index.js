@@ -48,7 +48,7 @@ alexaApp.intent("nameIntent", {
         var data = JSON.parse(body)
         var title = data.result.data["Best Match"][0].title
       })
-    }
+    });
     response.say(request.slot("NAME")+" G key jai jai car");
   }
 );
