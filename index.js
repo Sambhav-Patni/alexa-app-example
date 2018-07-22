@@ -42,14 +42,15 @@ alexaApp.intent("nameIntent", {
   function(request, response) {
     var endpoint = "https://beatsapi.media.jio.com/v2_1/beats-api/jio/src/response/search2/wicked+game+by+issak/english" // ENDPOINT GOES HERE
     var body = ""
+    var title
     https.get(endpoint, (response) => {
       response.on('data', (chunk) => { body += chunk })
       response.on('end', () => {
         var data = JSON.parse(body)
-        var title = data.result.data["Best Match"][0].title
+        title = data.result.data["Best Match"][0].title
       })
     });
-    response.say(request.slot("NAME")+" G key jai jai car");
+    response.say(title);
   }
 );
 
