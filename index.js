@@ -49,6 +49,7 @@ alexaApp.intent("nameIntent", {
         var title = data.result.data["Best Match"][0].title
         console.log("title: "+title)
         response.say("got title "+title)
+        return response.send()
       })
     });  
   }
