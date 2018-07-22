@@ -43,7 +43,7 @@ alexaApp.intent("nameIntent", {
     var endpoint = "https://beatsapi.media.jio.com/v2_1/beats-api/jio/src/response/search2/wicked+game+by+issak/english" // ENDPOINT GOES HERE
     var body = ""  
     var title
-    var req = await https.get(endpoint, (servresponse) => {
+    var req = https.get(endpoint, (servresponse) => {
       servresponse.on('data', (chunk) => { body += chunk })
       servresponse.on('end', () => {
         var data = JSON.parse(body)
