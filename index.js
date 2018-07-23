@@ -41,11 +41,11 @@ alexaApp.intent("nameIntent", {
     ]
   },
   function(request, response) {
-  var airportCode = req.slot('NAME');
+  var airportCode = request.slot('NAME');
     var reprompt = 'Tell me an airport code to get delay information.';
     if (airportCode=="") {
       var prompt = 'I didn\'t hear an airport code. Tell me an airport code.';
-      res.say(prompt).reprompt(reprompt).shouldEndSession(false);
+      response.say(prompt).reprompt(reprompt).shouldEndSession(false);
       return true;
     } else {
       var faaHelper = new FAADataHelper();
@@ -53,12 +53,12 @@ alexaApp.intent("nameIntent", {
         var data = JSON.parse(airportStatus)
         var title = data.result.data["Best Match"][0].title
         console.log(title);
-        res.say(title).send();
+        response.say(title).send();
       }).catch(function(err) {
         console.log(err.statusCode);
         var prompt = 'I didn\'t have data for an airport code of ' + airportCode;
          //https://github.com/matt-kruse/alexa-app/blob/master/index.js#L171
-        res.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
       });
       return false;
     }  
