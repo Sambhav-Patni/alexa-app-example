@@ -9,6 +9,7 @@ FAADataHelper.prototype.requestAirportStatus = function(airportCode) {
   return this.getAirportStatus(airportCode).then(
     function(response) {
       console.log('success - received airport info for ' + airportCode);
+      console.log(response.body);
       return response.body;
     }
   );
