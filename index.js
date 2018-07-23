@@ -1,6 +1,7 @@
 var express = require("express");
 var alexa = require("alexa-app");
 var https = require('https');
+var FAADataHelper = require('./data_helper');
 
 var PORT = process.env.PORT || 8080;
 var app = express();
@@ -40,20 +41,27 @@ alexaApp.intent("nameIntent", {
     ]
   },
   function(request, response) {
-    var endpoint = "https://beatsapi.media.jio.com/v2_1/beats-api/jio/src/response/search2/wicked+game+by+issak/english" // ENDPOINT GOES HERE
-    var body = ""  
-    var title
-    var req = https.get(endpoint, (servresponse) => {
-      servresponse.on('data', (chunk) => { body += chunk })
-      servresponse.on('end', () => {
-        var data = JSON.parse(body)
-        title = data.result.data["Best Match"][0].title
-        console.log("title: "+title)
-        response.say("got title "+title)
-      })
-    });
-  console.log("title: "+title);
-  response.say("got title "+title);
+  var airportCode = req.slot('NAME');
+    var reprompt = 'Tell me an airport code to get delay information.';
+    if (_.isEmpty(airportCode)) {
+      var prompt = 'I didn\'t hear an airport code. Tell me an airport code.';
+      res.say(prompt).reprompt(reprompt).shouldEndSession(false);
+      return true;
+    } else {
+      var faaHelper = new FAADataHelper();
+      faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {
+        var data = JSON.parse(airportStatus)
+        var title = data.result.data["Best Match"][0].title
+        console.log(title);
+        res.say(title).send();
+      }).catch(function(err) {
+        console.log(err.statusCode);
+        var prompt = 'I didn\'t have data for an airport code of ' + airportCode;
+         //https://github.com/matt-kruse/alexa-app/blob/master/index.js#L171
+        res.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+      });
+      return false;
+    }  
   }
 );
 
