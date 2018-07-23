@@ -1,7 +1,7 @@
 'use strict';
 var _ = require('lodash');
 var rp = require('request-promise');
-var ENDPOINT = 'http://services.faa.gov/airport/status/';
+var ENDPOINT = 'http://beatsapi.media.jio.com/v2_1/beats-api/jio/src/response/search2/wicked+game+by+issak/english';
 
 function FAADataHelper() {
 }
@@ -18,7 +18,7 @@ FAADataHelper.prototype.requestAirportStatus = function(airportCode) {
 FAADataHelper.prototype.getAirportStatus = function(airportCode) {
   var options = {
     method: 'GET',
-    uri: ENDPOINT + airportCode,
+    uri: ENDPOINT,
     resolveWithFullResponse: true,
     json: true
   };
