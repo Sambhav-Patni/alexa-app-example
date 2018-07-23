@@ -49,8 +49,7 @@ alexaApp.intent("nameIntent", {
       return true;
     } else {
       var faaHelper = new FAADataHelper();
-      faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {        
-        console.log("body: "+airportStatus);
+      faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {                
         var title = airportStatus.result.data["Best Match"][0].title;
         console.log("title: "+title);
         response.say("got title "+title).send();
@@ -61,7 +60,9 @@ alexaApp.intent("nameIntent", {
         response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
       });
       return false;
-    }  
+    }
+  response.say("Sambhav ji ki jai jai kaar");
+  console.log("#END#");
   }
 );
 
