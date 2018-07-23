@@ -43,7 +43,7 @@ alexaApp.intent("nameIntent", {
   function(request, response) {
   var airportCode = req.slot('NAME');
     var reprompt = 'Tell me an airport code to get delay information.';
-    if (_.isEmpty(airportCode)) {
+    if (airportCode=="") {
       var prompt = 'I didn\'t hear an airport code. Tell me an airport code.';
       res.say(prompt).reprompt(reprompt).shouldEndSession(false);
       return true;
