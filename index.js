@@ -49,10 +49,9 @@ alexaApp.intent("nameIntent", {
       return true;
     } else {
       var faaHelper = new FAADataHelper();
-      faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {
-        var data = JSON.parse(airportStatus);
-        var title = data.result.data["Best Match"][0].title;
+      faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {        
         console.log("body: "+airportStatus);
+        var title = airportStatus.result.data["Best Match"][0].title;
         console.log("title: "+title);
         response.say("got title "+title).send();
       }).catch(function(err) {
