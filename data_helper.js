@@ -13,7 +13,7 @@ FAADataHelper.prototype.requestAirportStatus = function(airportCode) {
       //var data = JSON.parse(response.body);
       //var title = data.result.data["Best Match"][0].title;
       //console.log("title: "+title);
-      return title;
+      return response.body;
     }
   );
 };
