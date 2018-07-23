@@ -50,11 +50,11 @@ alexaApp.intent("nameIntent", {
     } else {
       var faaHelper = new FAADataHelper();
       faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {
-        var data = JSON.parse(airportStatus)
-        var title = data.result.data["Best Match"][0].title
-        console.log(airportStatus)
-        console.log(title)
-        response.say(title).send()
+        var data = JSON.parse(airportStatus);
+        var title = data.result.data["Best Match"][0].title;
+        console.log("body: "+airportStatus);
+        console.log("title: "+title);
+        response.say("got title "+title).send();
       }).catch(function(err) {
         console.log(err.statusCode);
         var prompt = 'I didn\'t have data for an airport code of ' + airportCode;
