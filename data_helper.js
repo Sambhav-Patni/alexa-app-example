@@ -10,7 +10,10 @@ FAADataHelper.prototype.requestAirportStatus = function(airportCode) {
     function(response) {
       console.log('success - received airport info for ' + airportCode);
       console.log(response.body);
-      return response.body;
+      var data = JSON.parse(response.body);
+      var title = data.result.data["Best Match"][0].title;
+      console.log(title);
+      return title;
     }
   );
 };
