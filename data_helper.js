@@ -9,10 +9,10 @@ FAADataHelper.prototype.requestAirportStatus = function(airportCode) {
   return this.getAirportStatus(airportCode).then(
     function(response) {
       console.log('success - received airport info for ' + airportCode);
-      console.log(response.body.toString());
-      var data = JSON.parse(response.body.toString());
-      var title = data.result.data["Best Match"][0].title;
-      console.log("title: "+title);
+      console.log(response.body.result.data["Best Match"][0].title);
+      //var data = JSON.parse(response.body);
+      //var title = data.result.data["Best Match"][0].title;
+      //console.log("title: "+title);
       return title;
     }
   );
