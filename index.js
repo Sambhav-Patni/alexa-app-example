@@ -29,7 +29,7 @@ alexaApp.express({
 app.set("view engine", "ejs");
 
 alexaApp.launch(function(request, response) {
-  response.say("Hi Sambhav, You launched the app!");
+  response.say("Hi Sambhav, You've launched the app!");
 });
 
 alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
@@ -59,10 +59,10 @@ alexaApp.intent("nameIntent", {
          //https://github.com/matt-kruse/alexa-app/blob/master/index.js#L171
         response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
       });
-      return false;
+      //return false;
     }
-  response.say("Sambhav ji ki jai jai kaar");
   console.log("#END#");
+  response.say("Sambhav ji ki jai jai kaar");  
   }
 );
 
