@@ -44,7 +44,7 @@ alexaApp.intent("nameIntent", {
   },
   function(request, response) {
   var InputName = request.slot('NAME');
-  getTitle(InputName))
+  getTitle(InputName)
                 .then(function(weather) {
                     console.log('responding to weather request for ' + InputName + ' with ', weather);
                     res.json(
