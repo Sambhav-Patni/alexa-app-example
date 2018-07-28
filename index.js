@@ -47,12 +47,12 @@ alexaApp.intent("nameIntent", {
   getTitle(InputName)
                 .then(function(weather) {
                     console.log('responding to weather request for ' + InputName + ' with ', weather);
-                    res.json(
+                    response.json(
                         buildResponse( {}, '<speak>' + weather.text + '</speak>', weather.card, true )
                     );
                 })
                 .catch(function(err) {
-                    res.json(
+                    response.json(
                         buildResponse( {}, '<speak>' + err + '</speak>', {}, true )
                     );
                 });
