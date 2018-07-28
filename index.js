@@ -45,10 +45,14 @@ alexaApp.intent("nameIntent", {
   function(request, response) {
   var InputName = request.slot('NAME');
 	
-		getTitle(InputName)
-                .then(weather=> {
-                    console.log('responding to weather request for ' + InputName + ' with ', weather);
-                    response.say(weather.text);
+		return getTitle(InputName)
+                .then(rc=> {
+			if (rc.statusText >= 400) {
+      			return response.fail();
+    			} else {
+                    	console.log('responding to weather request for ' + InputName + ' with ', rc);
+                    	return response.say(rc.text);
+			}
 		});
 	
   //response.say(getTitle(InputName).text);                
