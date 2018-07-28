@@ -50,8 +50,7 @@ alexaApp.intent("nameIntent", {
 					          response.say(weather.text);                    
                 })
                 .catch(function(err) {
-                    response.say(err);                        
-                    );
+                    response.say(err);                                            
                 });  
   console.log("#END#");
   //response.say("Sambhav ji ki jai jai kaar");  
