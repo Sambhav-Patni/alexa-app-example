@@ -44,16 +44,13 @@ alexaApp.intent("nameIntent", {
   },
   function(request, response) {
   var InputName = request.slot('NAME');
-	return new Promise(function(resolve, reject){
+	
 		getTitle(InputName)
-                .then(function(weather) {
+                .then(weather=> {
                     console.log('responding to weather request for ' + InputName + ' with ', weather);
-                    return resolve({ response.say(weather.text); });
-                })
-                .catch(function(err) {
-                    return reject({ response.say(err); });
-                });
-	});
+                    response.say(weather.text);
+		});
+	
   //response.say(getTitle(InputName).text);                
   console.log("#END#");
   //response.say("Sambhav ji ki jai jai kaar");  
