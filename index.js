@@ -1,7 +1,9 @@
 var express = require("express");
 var alexa = require("alexa-app");
-var https = require('https');
-var FAADataHelper = require('./data_helper');
+var request = require('request');
+
+const BASE_URL = 'http://beatsapi.media.jio.com/v2_1/beats-api/jio/src/response/search2/';
+const IMAGE_BASE = process.env.WEATHER_IMAGE_BASE;
 
 var PORT = process.env.PORT || 8080;
 var app = express();
@@ -29,7 +31,7 @@ alexaApp.express({
 app.set("view engine", "ejs");
 
 alexaApp.launch(function(request, response) {
-  response.say("Hi Sambhav, You've launched the app!");
+  response.say("Hii Sambhav, The App is launched!");
 });
 
 alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
@@ -41,29 +43,60 @@ alexaApp.intent("nameIntent", {
     ]
   },
   function(request, response) {
-  var airportCode = request.slot('NAME');
-    var reprompt = 'Tell me an airport code to get delay information.';
-    if (airportCode=="") {
-      var prompt = 'I didn\'t hear an airport code. Tell me an airport code.';
-      response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-      return true;
-    } else {
-      var faaHelper = new FAADataHelper();
-      faaHelper.requestAirportStatus(airportCode).then(function(airportStatus) {                
-        var title = airportStatus.result.data["Best Match"][0].title;
-        console.log("title: "+title);
-        response.say("got title "+title).send();
-      }).catch(function(err) {
-        console.log(err.statusCode);
-        var prompt = 'I didn\'t have data for an airport code of ' + airportCode;
-         //https://github.com/matt-kruse/alexa-app/blob/master/index.js#L171
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
-      });
-      //return false;
-    }
+  var InputName = request.slot('NAME');
+  getTitle(InputName)
+                .then(function(weather) {
+                    console.log('responding to request for ' + InputName + ' with ', weather);
+					          response.say(weather.text);                    
+                })
+                .catch(function(err) {
+                    response.say(err);                        
+                    );
+                });  
   console.log("#END#");
-  response.say("Sambhav ji ki jai jai kaar");  
+  //response.say("Sambhav ji ki jai jai kaar");  
   }
 );
+
+
+function getTitle(inputText) {
+    return new Promise(function(resolve, reject) {
+        
+		console.log("Request: "+BASE_URL + inputText + "/english");
+        request({
+            url: BASE_URL + inputText + "/english",
+            json: true
+        }, function(err, res, body) {
+            let data, text, card;                
+
+            if (err || res.statusCode >= 400) {
+                console.error(res.statusCode, err);
+                return reject('Unable to get weather data!');
+            }
+			data = body.result.data["Best Match"][0].title;                      
+
+            if (!data) {
+                return reject('I have no data for that day!');
+            }
+			
+			console.log(body.result.data["Best Match"][0].title);
+            text = body.result.data["Best Match"][0].title;
+			
+            card = {
+                type: 'Standard',
+                title: 'Best Match for ' + inputText,
+                text: text,
+                image: {
+                    smallImageUrl: IMAGE_BASE + data.icon + '.png',
+                    largeImageUrl: IMAGE_BASE + data.icon + '.png'
+                }
+            };
+
+            resolve( { text, card } );
+        });
+    });
+}
+
+
 
 app.listen(PORT, () => console.log("Listening on port " + PORT + "."));
