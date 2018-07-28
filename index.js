@@ -44,18 +44,7 @@ alexaApp.intent("nameIntent", {
   },
   function(request, response) {
   var InputName = request.slot('NAME');
-  getTitle(InputName)
-                .then(function(weather) {
-                    console.log('responding to weather request for ' + InputName + ' with ', weather);
-                    response.json(
-                        buildResponse( {}, '<speak>' + weather.text + '</speak>', weather.card, true )
-                    );
-                })
-                .catch(function(err) {
-                    response.json(
-                        buildResponse( {}, '<speak>' + err + '</speak>', {}, true )
-                    );
-                });
+  response.say(getTitle(InputName).text);                
   console.log("#END#");
   //response.say("Sambhav ji ki jai jai kaar");  
   }
