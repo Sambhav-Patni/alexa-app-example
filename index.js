@@ -49,13 +49,12 @@ alexaApp.intent("nameIntent", {
                 .then(function(weather) {
                     console.log('responding to weather request for ' + InputName + ' with ', weather);
                     response.say(weather.text);
-                    );
                 })
                 .catch(function(err) {
                     response.say(err);
                 });
 	});
-  response.say(getTitle(InputName).text);                
+  //response.say(getTitle(InputName).text);                
   console.log("#END#");
   //response.say("Sambhav ji ki jai jai kaar");  
   }
