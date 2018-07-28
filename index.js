@@ -44,19 +44,38 @@ alexaApp.intent("nameIntent", {
   },
   function(request, response) {
   var InputName = request.slot('NAME');
-  getTitle(InputName)
+  getTitle(InputName))
                 .then(function(weather) {
-                    console.log('responding to request for ' + InputName + ' with ', weather);
-					          response.say(weather.text);                    
+                    console.log('responding to weather request for ' + InputName + ' with ', weather);
+                    res.json(
+                        buildResponse( {}, '<speak>' + weather.text + '</speak>', weather.card, true )
+                    );
                 })
                 .catch(function(err) {
-                    response.say(err);                                            
-                });  
+                    res.json(
+                        buildResponse( {}, '<speak>' + err + '</speak>', {}, true )
+                    );
+                });
   console.log("#END#");
   //response.say("Sambhav ji ki jai jai kaar");  
   }
 );
 
+
+function buildResponse(session, speech, card, end) {
+    return {
+        version: VERSION,
+        sessionAttributes: session,
+        response: {
+            outputSpeech: {
+                type: 'SSML',
+                ssml: speech
+            },
+            card: card,
+            shouldEndSession: !!end
+        }
+    };
+}
 
 function getTitle(inputText) {
     return new Promise(function(resolve, reject) {
