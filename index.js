@@ -32,8 +32,8 @@ app.set("view engine", "ejs");
 
 alexaApp.launch(function(request, response) {
 	var stream = {
-    "url": "https://s3.amazonaws.com/ask-soundlibrary/human/amzn_sfx_large_crowd_cheer_03.mp3",
-    "token": "https://s3.amazonaws.com/ask-soundlibrary/human/amzn_sfx_large_crowd_cheer_03.mp3",    
+    "url": "https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3",
+    "token": "aws-podcast-episode-139.mp3",    
     "offsetInMilliseconds": 0
   };
   response.audioPlayerPlayStream("REPLACE_ALL", stream);
