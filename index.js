@@ -73,6 +73,38 @@ alexaApp.intent("nameIntent", {
   }
 );
 
+alexaApp.intent('AMAZON.StopIntent', {},
+  function(req, res) {
+    console.log('app.AMAZON.StopIntent');
+    res.audioPlayerStop();
+    res.send();
+  }
+);
+
+alexaApp.intent('AMAZON.PauseIntent', {},
+  function(req, res) {
+    console.log('app.AMAZON.PauseIntent');
+    res.audioPlayerStop();
+    res.send();
+  }
+);
+
+alexaApp.intent('AMAZON.ResumeIntent', {},
+  function(req, res) {
+    console.log('app.AMAZON.ResumeIntent');
+    if (req.context.AudioPlayer.offsetInMilliseconds > 0 &&
+      req.context.AudioPlayer.playerActivity === 'STOPPED') {
+        res.audioPlayerPlayStream('REPLACE_ALL', {
+          // hack: use token to remember the URL of the stream
+          token: req.context.AudioPlayer.token,
+          url: req.context.AudioPlayer.token,
+          offsetInMilliseconds: req.context.AudioPlayer.offsetInMilliseconds
+      });
+    }
+    res.send();
+  }
+);
+
 
 function buildResponse(session, speech, card, end) {
     return {
