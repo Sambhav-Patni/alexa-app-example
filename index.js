@@ -31,14 +31,20 @@ alexaApp.express({
 app.set("view engine", "ejs");
 
 alexaApp.launch(function(request, response) {
-	var stream = {
-    "url": "https://www.wapbestwap.com/fastload/278781",
+var dialogSeries = randomIntFromInterval(278771,278787);	
+var stream = {
+    "url": "https://www.wapbestwap.com/fastload/"+dialogSeries,
     "token": "aws-podcast-episode-139.mp3",    
     "offsetInMilliseconds": 0
   };
   response.audioPlayerPlayStream("REPLACE_ALL", stream);
-  response.say("Hii Sambhav, The App is launched!");
+  response.say("Here a funny one for you");
 });
+
+function randomIntFromInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
 
 alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
 
