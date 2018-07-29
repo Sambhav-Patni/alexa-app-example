@@ -37,7 +37,7 @@ alexaApp.launch(function(request, response) {
     "offsetInMilliseconds": 0
   };
   response.audioPlayerPlayStream("REPLACE_ALL", stream);
-  //response.say("Hii Sambhav, The App is launched!");
+  response.say("Hii Sambhav, The App is launched!");
 });
 
 alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
