@@ -32,7 +32,7 @@ app.set("view engine", "ejs");
 
 alexaApp.launch(function(request, response) {
 	var stream = {
-    "url": "https://feeds.soundcloud.com/stream/274166909-amazon-web-services-306355661-aws-podcast-episode-139.mp3",
+    "url": "http://jiobeats.cdn.jio.com/mod/_definst_/mp4:hdindiamusic/audiofiles/623/622802/623_622802_3_320.mp4/playlist.m3u8",
     "token": "aws-podcast-episode-139.mp3",    
     "offsetInMilliseconds": 0
   };
