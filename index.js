@@ -33,12 +33,11 @@ app.set("view engine", "ejs");
 alexaApp.launch(function(request, response) {
 	var stream = {
     "url": "https://s3.amazonaws.com/ask-soundlibrary/human/amzn_sfx_large_crowd_cheer_03.mp3",
-    "token": "some_token",
-    "expectedPreviousToken": "some_previous_token",
+    "token": "https://s3.amazonaws.com/ask-soundlibrary/human/amzn_sfx_large_crowd_cheer_03.mp3",    
     "offsetInMilliseconds": 0
   };
-  response.audioPlayerPlayStream("ENQUEUE", stream);
-  response.say("Hii Sambhav, The App is launched!");
+  response.audioPlayerPlayStream("REPLACE_ALL", stream);
+  //response.say("Hii Sambhav, The App is launched!");
 });
 
 alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
