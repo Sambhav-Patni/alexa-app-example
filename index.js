@@ -67,6 +67,13 @@ alexaApp.intent("nameIntent", {
 			}
 		});
 	
+  var darray = {"dialogues":['Kaun kambakht bardaasht karne ko peeta hai? Main toh peeta hoon ke bas saans le saku','Tu mujhe nahin maar sakti, tu meri maa hai','Mein pehle ek aurat hoon','Anarkali, salim ki mohabbat tumhe marne nahin degi aur hum tumhe jeene nahin denge','Are o baabumoshai! Hum sab rangmanch ki kathputliyan hain jinki dor uparwale ki ungliyon se bandhi hui hai. kab kaun uthega koi nahin bata sakta','Pushpa, I hate tears','Aapke paon dekhe, bahut haseen hai. inhe zameen par mat utariyega, maile ho jayenge','Kutte, kameene, main tera khoon pee jaoonga','Koi pyaar kare toh tumse kare, tum jaise ho waise kare. Koi tumko badal kar pyaar kare toh woh pyaar nahin, sauda hai','Aaj mere paas gaadi hai, bungla hai, paisa hai… tumhare paas kya hai?','Mere paas, mere paas maa hai','Are-o-sambha! Kitne aadmi thhe?','Tumhara naam kya hai basanti','Saara sheher mujhe lion ke naamse jaanta hai','Don ka intezaar toh baarah mulko ki police kar rahi hai, but Don ko pakadna mushkil hi nahi, namumkin hai','Mogambo khush hua','Rishte mein to hum tumhare baap lagte hain, naam hai Shahenshah','Dosti ka ek usool hai, Madam – no sorry, no thank you','Kabhi kabhi kuch jeetne ke liye kuch harna bhi padta hai, aur haar kar jeetnay wale ko baazigar kehte hain','Taareekh pe taareekh milti rahi hai lekin insaaf nahin milta. Milte hai to sirf taareekh','Bade bade shehron mein aisi chhoti chhoti baatein hoti rehti hain','Uska to na bad luck hi kharab hai','Tension lene ka nahin, sirf dene ka','Ek chutki sindoor ki keemat tum kya jaano Ramesh babu','Don’t underestimate the power of the common man','Koi dhandha chota nahi hota. Aur dhandhe se bada koi dharm nahi hota']};
+  console.log(darray.dialogues[0]);
+  for(var i=0;i<darray.dialogues.length;i++){
+  if(darray.dialogues[i].indexOf(InputName) >= 0) 
+  response.say(darray.dialogues[i]);
+  }
+	
   //response.say(getTitle(InputName).text);                
   console.log("#END#");
   //response.say("Sambhav ji ki jai jai kaar");  
