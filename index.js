@@ -31,14 +31,15 @@ alexaApp.express({
 app.set("view engine", "ejs");
 
 alexaApp.launch(function(request, response) {
-var dialogSeries = randomIntFromInterval(278771,278787);	
+/*var dialogSeries = randomIntFromInterval(278771,278787);	
 var stream = {
     "url": "https://www.wapbestwap.com/fastload/"+dialogSeries,
     "token": "aws-podcast-episode-139.mp3",    
     "offsetInMilliseconds": 0
   };
   response.audioPlayerPlayStream("REPLACE_ALL", stream);
-  response.say("Here a funny one for you");
+  */
+  response.say("Hi Sambhav, I am EVA your friendly Bot, who'll do your tasks without asking for favours");
 });
 
 function randomIntFromInterval(min,max)
@@ -48,31 +49,45 @@ function randomIntFromInterval(min,max)
 
 alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
 
-alexaApp.intent("nameIntent", {
+alexaApp.intent("statusIntent", {
     "slots": { "NAME": "LITERAL" },
     "utterances": [
       "my {name is|name's} {names|NAME}", "set my name to {names|NAME}"
     ]
   },
   function(request, response) {
-  var InputName = request.slot('NAME');
+  var InputName = request.slot('NAME');	
 	
-	/*	return getTitle(InputName)
-                .then(rc=> {
-			if (rc.statusText >= 400) {
-      			return response.fail();
-    			} else {
-                    	console.log('responding to weather request for ' + InputName + ' with ', rc);
-                    	return response.say(rc.text);
-			}
-		});
-	Promise removed */
-  var darray = {"dialogues":['Kaun kambakht bardaasht karne ko peeta hai? Main toh peeta hoon ke bas saans le saku','Tu mujhe nahin maar sakti, tu meri maa hai','Mein pehle ek aurat hoon','Anarkali, salim ki mohabbat tumhe marne nahin degi aur hum tumhe jeene nahin denge','Are o baabumoshai! Hum sab rangmanch ki kathputliyan hain jinki dor uparwale ki ungliyon se bandhi hui hai. kab kaun uthega koi nahin bata sakta','Pushpa, I hate tears','Aapke paon dekhe, bahut haseen hai. inhe zameen par mat utariyega, maile ho jayenge','Kutte, kameene, main tera khoon pee jaoonga','Koi pyaar kare toh tumse kare, tum jaise ho waise kare. Koi tumko badal kar pyaar kare toh woh pyaar nahin, sauda hai','Aaj mere paas gaadi hai, bungla hai, paisa hai… tumhare paas kya hai?','Mere paas, mere paas maa hai','Are-o-sambha! Kitne aadmi thhe?','Tumhara naam kya hai basanti','Saara sheher mujhe lion ke naamse jaanta hai','Don ka intezaar toh baarah mulko ki police kar rahi hai, but Don ko pakadna mushkil hi nahi, namumkin hai','Mogambo khush hua','Rishte mein to hum tumhare baap lagte hain, naam hai Shahenshah','Dosti ka ek usool hai, Madam – no sorry, no thank you','Kabhi kabhi kuch jeetne ke liye kuch harna bhi padta hai, aur haar kar jeetnay wale ko baazigar kehte hain','Taareekh pe taareekh milti rahi hai lekin insaaf nahin milta. Milte hai to sirf taareekh','Bade bade shehron mein aisi chhoti chhoti baatein hoti rehti hain','Uska to na bad luck hi kharab hai','Tension lene ka nahin, sirf dene ka','Ek chutki sindoor ki keemat tum kya jaano Ramesh babu','Don’t underestimate the power of the common man','Koi dhandha chota nahi hota. Aur dhandhe se bada koi dharm nahi hota']};
+  //var darray = {"dialogues":['Kaun kambakht bardaasht karne ko peeta hai? Main toh peeta hoon ke bas saans le saku','Tu mujhe nahin maar sakti, tu meri maa hai','Mein pehle ek aurat hoon','Anarkali, salim ki mohabbat tumhe marne nahin degi aur hum tumhe jeene nahin denge','Are o baabumoshai! Hum sab rangmanch ki kathputliyan hain jinki dor uparwale ki ungliyon se bandhi hui hai. kab kaun uthega koi nahin bata sakta','Pushpa, I hate tears','Aapke paon dekhe, bahut haseen hai. inhe zameen par mat utariyega, maile ho jayenge','Kutte, kameene, main tera khoon pee jaoonga','Koi pyaar kare toh tumse kare, tum jaise ho waise kare. Koi tumko badal kar pyaar kare toh woh pyaar nahin, sauda hai','Aaj mere paas gaadi hai, bungla hai, paisa hai… tumhare paas kya hai?','Mere paas, mere paas maa hai','Are-o-sambha! Kitne aadmi thhe?','Tumhara naam kya hai basanti','Saara sheher mujhe lion ke naamse jaanta hai','Don ka intezaar toh baarah mulko ki police kar rahi hai, but Don ko pakadna mushkil hi nahi, namumkin hai','Mogambo khush hua','Rishte mein to hum tumhare baap lagte hain, naam hai Shahenshah','Dosti ka ek usool hai, Madam – no sorry, no thank you','Kabhi kabhi kuch jeetne ke liye kuch harna bhi padta hai, aur haar kar jeetnay wale ko baazigar kehte hain','Taareekh pe taareekh milti rahi hai lekin insaaf nahin milta. Milte hai to sirf taareekh','Bade bade shehron mein aisi chhoti chhoti baatein hoti rehti hain','Uska to na bad luck hi kharab hai','Tension lene ka nahin, sirf dene ka','Ek chutki sindoor ki keemat tum kya jaano Ramesh babu','Don’t underestimate the power of the common man','Koi dhandha chota nahi hota. Aur dhandhe se bada koi dharm nahi hota']};
+  var darray = {"dialogues":['Execution is going well, Today i have processed about 177 requests out of which only one failed']};
   console.log(darray.dialogues[0]);
-  for(var i=0;i<darray.dialogues.length;i++){
-  if(darray.dialogues[i].indexOf(InputName) >= 0) 
-  response.say(darray.dialogues[i]);
+  //for(var i=0;i<darray.dialogues.length;i++){
+  //if(darray.dialogues[i].indexOf(InputName) >= 0) 
+  response.say(darray.dialogues[0]);
+  //}
+	
+  //response.say(getTitle(InputName).text);                
+  console.log("#END#");
+  //response.say("Sambhav ji ki jai jai kaar");  
   }
+);
+
+alexaApp.intent("topRunIntent", {
+    "slots": { "NAME": "LITERAL" },
+    "utterances": [
+      "my {name is|name's} {names|NAME}", "set my name to {names|NAME}"
+    ]
+  },
+  function(request, response) {
+  var InputName = request.slot('NAME');	
+	
+  //var darray = {"dialogues":['Kaun kambakht bardaasht karne ko peeta hai? Main toh peeta hoon ke bas saans le saku','Tu mujhe nahin maar sakti, tu meri maa hai','Mein pehle ek aurat hoon','Anarkali, salim ki mohabbat tumhe marne nahin degi aur hum tumhe jeene nahin denge','Are o baabumoshai! Hum sab rangmanch ki kathputliyan hain jinki dor uparwale ki ungliyon se bandhi hui hai. kab kaun uthega koi nahin bata sakta','Pushpa, I hate tears','Aapke paon dekhe, bahut haseen hai. inhe zameen par mat utariyega, maile ho jayenge','Kutte, kameene, main tera khoon pee jaoonga','Koi pyaar kare toh tumse kare, tum jaise ho waise kare. Koi tumko badal kar pyaar kare toh woh pyaar nahin, sauda hai','Aaj mere paas gaadi hai, bungla hai, paisa hai… tumhare paas kya hai?','Mere paas, mere paas maa hai','Are-o-sambha! Kitne aadmi thhe?','Tumhara naam kya hai basanti','Saara sheher mujhe lion ke naamse jaanta hai','Don ka intezaar toh baarah mulko ki police kar rahi hai, but Don ko pakadna mushkil hi nahi, namumkin hai','Mogambo khush hua','Rishte mein to hum tumhare baap lagte hain, naam hai Shahenshah','Dosti ka ek usool hai, Madam – no sorry, no thank you','Kabhi kabhi kuch jeetne ke liye kuch harna bhi padta hai, aur haar kar jeetnay wale ko baazigar kehte hain','Taareekh pe taareekh milti rahi hai lekin insaaf nahin milta. Milte hai to sirf taareekh','Bade bade shehron mein aisi chhoti chhoti baatein hoti rehti hain','Uska to na bad luck hi kharab hai','Tension lene ka nahin, sirf dene ka','Ek chutki sindoor ki keemat tum kya jaano Ramesh babu','Don’t underestimate the power of the common man','Koi dhandha chota nahi hota. Aur dhandhe se bada koi dharm nahi hota']};
+  var darray = {"dialogues":['Today\'s top requests were 3PL Confirmation, Send Notice Letter and Process Account Reconciliation']};
+  console.log(darray.dialogues[0]);
+  //for(var i=0;i<darray.dialogues.length;i++){
+  //if(darray.dialogues[i].indexOf(InputName) >= 0) 
+  response.say(darray.dialogues[0]);
+  //}
 	
   //response.say(getTitle(InputName).text);                
   console.log("#END#");
