@@ -39,7 +39,7 @@ var stream = {
   };
   response.audioPlayerPlayStream("REPLACE_ALL", stream);
   */
-  response.say("Hello Sambhave, I am EVA your friendly Bot, who'll do your tasks without asking for favours");
+  response.say("Helloo.. Sambhav..!!!, I am EVAA your friendly Bot, I'll do your tasks without asking for favours!!");
 });
 
 function randomIntFromInterval(min,max)
