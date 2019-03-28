@@ -39,7 +39,7 @@ var stream = {
   };
   response.audioPlayerPlayStream("REPLACE_ALL", stream);
   */
-  response.say("Helllo Sambhav!!! I am EVA your friendly Bot, <amazon:effect name=\"whispered\">I'll do your tasks without asking for favours!!</amazon:effect>");
+  response.say("Helllo Sambhav!!! I am EVA, your friendly Bot. <amazon:effect name=\"whispered\">I'll do your tasks without asking for favours!!</amazon:effect>");
 });
 
 function randomIntFromInterval(min,max)
